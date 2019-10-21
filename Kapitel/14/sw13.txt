@@ -1,0 +1,54 @@
+!
+frr version 7.1
+frr defaults traditional
+hostname sw13
+log syslog informational
+service integrated-vtysh-config
+!
+interface e101-001-0
+ bandwidth 1000
+ ip address 13.13.13.13/32
+ ip ospf area 0
+ ip ospf dead-interval 4
+ ip ospf hello-interval 1
+ ip ospf network point-to-point
+ ipv6 ospf6 dead-interval 4
+ ipv6 ospf6 hello-interval 1
+ ipv6 ospf6 network point-to-point
+!
+interface e101-002-0
+ bandwidth 1000
+ ip address 13.13.13.13/32
+ ip ospf area 0
+ ip ospf dead-interval 4
+ ip ospf hello-interval 1
+ ip ospf network point-to-point
+ ipv6 ospf6 dead-interval 4
+ ipv6 ospf6 hello-interval 1
+ ipv6 ospf6 network point-to-point
+!
+interface e101-005-0
+ bandwidth 1000
+ description server3:eth1
+ ip address 13.13.13.13/32
+ ip ospf area 0
+ ip ospf dead-interval 4
+ ip ospf hello-interval 1
+ ip ospf network point-to-point
+ ipv6 ospf6 dead-interval 4
+ ipv6 ospf6 hello-interval 1
+ ipv6 ospf6 network point-to-point
+!
+router ospf
+ ospf router-id 13.13.13.13
+ auto-cost reference-bandwidth 40000
+!
+router ospf6
+ ospf6 router-id 13.13.13.13
+ interface e101-001-0 area 0.0.0.0
+ interface e101-002-0 area 0.0.0.0
+ interface e101-005-0 area 0.0.0.2
+!
+line vty
+!
+end

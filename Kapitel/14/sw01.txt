@@ -1,0 +1,73 @@
+!
+frr version 7.1
+frr defaults traditional
+hostname sw01
+log stdout
+log syslog informational
+service integrated-vtysh-config
+!
+interface e101-001-0
+ bandwidth 1000
+ ip address 1.1.1.1/32
+ ip ospf area 0
+ ip ospf dead-interval 4
+ ip ospf hello-interval 1
+ ip ospf network point-to-point
+ ipv6 ospf6 dead-interval 4
+ ipv6 ospf6 hello-interval 1
+ ipv6 ospf6 network point-to-point
+!
+interface e101-002-0
+ bandwidth 1000
+ ip address 1.1.1.1/32
+ ip ospf area 0
+ ip ospf dead-interval 4
+ ip ospf hello-interval 1
+ ip ospf network point-to-point
+ ipv6 ospf6 dead-interval 4
+ ipv6 ospf6 hello-interval 1
+ ipv6 ospf6 network point-to-point
+!
+interface e101-003-0
+ bandwidth 1000
+ ip address 1.1.1.1/32
+ ip ospf area 0
+ ip ospf dead-interval 4
+ ip ospf hello-interval 1
+ ip ospf network point-to-point
+ ipv6 ospf6 dead-interval 4
+ ipv6 ospf6 hello-interval 1
+ ipv6 ospf6 network point-to-point
+!
+interface e101-004-0
+ bandwidth 1000
+ ip address 1.1.1.1/32
+ ip ospf area 0
+ ip ospf dead-interval 4
+ ip ospf hello-interval 1
+ ip ospf network point-to-point
+ ipv6 ospf6 dead-interval 4
+ ipv6 ospf6 hello-interval 1
+ ipv6 ospf6 network point-to-point
+!
+interface lo
+ ip address 1.1.1.1/32
+ ip ospf area 0
+!
+router ospf
+ ospf router-id 1.1.1.1
+ auto-cost reference-bandwidth 40000
+ passive-interface eth0
+!
+router ospf6
+ ospf6 router-id 1.1.1.1
+ interface e101-001-0 area 0.0.0.0
+ interface e101-002-0 area 0.0.0.0
+ interface e101-003-0 area 0.0.0.0
+ interface e101-004-0 area 0.0.0.0
+!
+line vty
+!
+bfd
+!
+end
