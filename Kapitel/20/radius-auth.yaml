@@ -1,0 +1,26 @@
+---
+- hosts: sw01
+  become: no
+
+  tasks:
+  - name: install RADIUS client
+    apt:
+      name: libpam-radius-auth
+      update_cache: yes
+
+  - name: configure RADIUS settings
+    copy:
+      content: "10.5.1.16:1812   OpenSwitch22   5"
+      dest: "/etc/pam_radius_auth.conf"
+
+  - name: make SSH to use RADIUS
+    lineinfile:
+      path: /etc/pam.d/sshd
+      insertbefore: BOF
+      line: 'auth sufficient pam_radius_auth.so'
+
+  - name: make console login to use RADIUS
+    lineinfile:
+      path: /etc/pam.d/login
+      insertbefore: BOF
+      line: 'auth sufficient pam_radius_auth.so'

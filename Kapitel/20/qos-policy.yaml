@@ -1,0 +1,53 @@
+---
+#
+#    Hinweis: Dieses Beispiel stammt von 
+# https://galaxy.ansible.com/open-switch/opx-qos
+#
+- hosts: sw01
+  vars:
+    opx_qos:
+    - operation: create
+      qos_wred_attr_data:
+        green-enable: 1
+        green-min-threshold: 10
+        green-max-threshold: 20
+        green-drop-probability: 1
+        yellow-enable: 1
+        yellow-min-threshold: 10
+        yellow-max-threshold: 20
+        yellow-drop-probability: 3
+        weight: 8
+        ecn-enable: 1
+        npu-id-list: [0]
+      qos_scheduler:
+        name: strict priority
+        algorithm: 1
+        weight: 2
+        meter-type: 1
+        min-rate: 256
+        min-burst: 300
+        max-rate: 1000
+        max-burst: 1200
+      qos_dscp_map_id:
+        switch-id: 0
+        name: dscp_map
+      qos_dscp_map_entry:
+        base-qos/dscp-to-tc-color-map/entry/tc: 0
+        base-qos/dscp-to-tc-color-map/entry/color: 1
+        base-qos/dscp-to-tc-color-map/entry/dscp: 40
+      qos_tc_map_id:
+        switch-id: 0
+        name: dscp_map
+      qos_tc_map_entry:
+        base-qos/tc-color-to-dscp-map/entry/tc: 0
+        base-qos/tc-color-to-dscp-map/entry/color: 1
+        base-qos/tc-color-to-dscp-map/entry/dscp: 40
+      qos_policer_meter:
+        type: 1
+        peak-rate: 10
+        mode: 4
+
+  roles:
+     - role: open-switch.opx-qos
+       when: ansible_net_os_name is defined and 
+             ansible_net_os_name == "openswitch"

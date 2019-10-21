@@ -1,0 +1,40 @@
+---
+- hosts: sw01
+  become: no
+
+  tasks:
+  - name: install apt-https as prerequisit
+    apt:
+      name: apt-transport-https
+      update_cache: yes
+
+  - name: trust FRR repository
+    apt_key:
+      url: https://deb.frrouting.org/frr/keys.asc
+      state: present
+
+  - name: insert FRR repository
+    copy:
+      content: "deb https://deb.frrouting.org/frr stretch frr-stable"
+      dest: "/etc/apt/sources.list.d/frr.list"
+
+  - name: install FRR
+    apt:
+      name: "{{ packages }}"
+      update_cache: yes
+    vars:
+      packages:
+      - frr 
+      - frr-pythontools
+
+  - name: enable OSPFd
+    lineinfile:
+      path: /etc/frr/daemons
+      regexp: '^ospfd='
+      line: 'ospfd=yes' 
+
+  - name: enable OSPF6d
+    lineinfile:
+      path: /etc/frr/daemons
+      regexp: '^ospf6d='
+      line: 'ospf6d=yes' 

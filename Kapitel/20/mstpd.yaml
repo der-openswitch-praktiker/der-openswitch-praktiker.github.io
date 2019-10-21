@@ -1,0 +1,42 @@
+---
+- hosts: sw01
+  become: no
+
+  tasks:
+  - name: install autoconf
+    apt:
+      name: autoconf
+      update_cache: yes
+
+  - name: download mstpd tarball
+    get_url:
+      url: https://github.com/mstpd/mstpd/archive/0.0.8.tar.gz
+      dest: /usr/src/mstpd-0.0.8.tar.gz
+
+  - name: Extract mstpd.tar.gz into /usr/src/
+    unarchive:
+      src: /usr/src/mstpd-0.0.8.tar.gz
+      remote_src: yes
+      dest: /usr/src/
+
+  - name: run autogen.sh
+    command: ./autogen.sh
+    args:
+      chdir: /usr/src/mstpd-0.0.8
+
+  - name: configure mstpd
+    command: ./configure --prefix=/usr --sysconfdir=/etc
+    args:
+      chdir: /usr/src/mstpd-0.0.8
+
+  - name: compile mstpd
+    make:
+      chdir: /usr/src/mstpd-0.0.8
+
+  - name: Run 'install' target
+    make:
+      chdir: /usr/src/mstpd-0.0.8
+      target: install
+
+  - name: start mstpd
+    command: /sbin/mstpd

@@ -1,0 +1,30 @@
+---
+- hosts: sw01
+  become: no
+
+  tasks:
+  - name: Create VLAN 20
+    # CLI command: opx-config-vlan create --id 20
+    opx_cps:
+      module_name: "dell-base-if-cmn/if/interfaces/interface"
+      attr_data: {
+           "base-if-vlan/if/interfaces/interface/id": 20,
+           "if/interfaces/interface/name": "br20",
+           # Das Attribut "phys-address" darf leer sein, muss 
+           # aber vorhanden sein. Die neue Netzbrücke br20 
+           # funktioniert auch mit leerer MAC-Adresse.
+           "dell-if/if/interfaces/interface/phys-address": "",
+           "if/interfaces/interface/type": "ianaift:l2vlan"
+      }
+      operation: "create"
+
+  - name: Assign switchports 1--4 to VLAN 20
+    # CLI command: opx-config-vlan set --id 20 --ports e101-001-0..e101-004-0
+    opx_cps:
+      module_name: "dell-base-if-cmn/if/interfaces/interface"
+      attr_data: {
+           "cps/key_data":
+              { "if/interfaces/interface/name": "br20" },
+           "dell-if/if/interfaces/interface/untagged-ports": ["e101-001-0","e101-002-0","e101-003-0","e101-004-0"],
+      }
+      operation: "set"

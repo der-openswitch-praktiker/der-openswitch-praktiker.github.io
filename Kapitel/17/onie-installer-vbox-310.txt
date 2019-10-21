@@ -1,0 +1,62 @@
+=== install OPX 3.1.0 on VirtualBox from +lvm+ command
+
+./lvm --nocolor create sw01 --iso /var/www/html/onie-kvm_x86_64-r0.iso --bin /var/www/html/PKGS_OPX-3.1.0-installer-x86_64.bin
+
+             t8.                           ..S:.
+          .;.88X                            ;888:
+        X; 8. 8X                            t888S 8X
+    .8S;;.:.  8X...                        .;@@8@8@8X88..
+  .@ :.       :::::.                 .  8XSS88S8888@@@8:@
+@8S:..       ..    : @                S 88X@8@88888888@88 88
+8t X               ..; @           .S 8888S8@88@@888X8888888
+  .X8X        t@ @  .::X.          888X8S88888888888X@88:
+     S  8    .@t 8 ;:.  : X.    .S 8S888888St8S888888S :
+        :@8X:.8X   @ ;:.tX8    S 88X8888;;; X88888XX
+            @.@t     :SX:.    888X8888    .. 88@:.
+             :X:      88.   SS@S88888:      t8X.
+                          X 888X888S:      .:.
+                         888S8S888;
+                       SX@X888888X            .
+           .t8.:     S 8888X88XX: .88:8.    ;8 8.
+         .X:88XX..  888X8S88      .;SX8:    X8@888.
+      .SSX888X8.  X 8X8888@      8X   .X 8 .t8 .:@:X8:
+   :8.8X88X8@88;8X@88888@      .:;8 t...tS X.@   .:tX8XXt
+ :X8S@88XX8888888@888X88            tX ...t;.         .;8tt
+88X888@88X@88888888888@.             8 ;:..               X:
+ :X8888@8S@8@8888888.:.                @ @888.        .8X;t
+  ;. SS888888@8@t  ; ..                   ..X8       S.:
+     .::8888888  ..                         X8   :X8@;
+      .:; .S888S:                           X8S :X.
+          :;  8X.                           ;.X
+           ..::
+
+    _____                  _____          _ _       _
+   |  _  |                /  ___|        (_) |     | |
+   | | | |_ __   ___ _ __ \ `--.__      ___| |_ ___| |__
+   | | | | '_ \ / _ \ '_ \ `--. \ \ /\ / / | __/ __| '_ \
+   \ \_/ / |_) |  __/ | | /\__/ /\ V  V /| | || (__| | | |
+    \___/| .__/ \___|_| |_\____/  \_/\_/ |_|\__\___|_| |_|
+         | |
+         |_|
+
+                        Version 2.3.3
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files on the virtual machine in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+
+OS-installer file: /var/www/html/PKGS_OPX-3.1.0-installer-x86_64.bin
+ONIE-Recovery file: /var/www/html/onie-kvm_x86_64-r0.iso
+Deleting VM name: "sw01"
+Initial boot in progress........................................................OK
+ONIE is self-embedding..........................................................OK
+Wait for VM to boot.............................................................OK
+ONIE stop discovery.............................................................OK
+Load OS-installer. This operation may take a few minutes. Please wait...........OK
+Installing OS...................................................................OK
+Configure OS....................................................................OK
+Final Restart of VM.............................................................OK
+Setup complete! You can now connect using: ssh -p 2222 opxUser@127.0.0.1
