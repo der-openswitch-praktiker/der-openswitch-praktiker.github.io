@@ -3,7 +3,7 @@
 Im modernen Rechenzentrum sind Switches längst keine dummen Pakettransporter mehr. Hohe Geschwindigkeiten gehören heutzutage zum Standard.
 Darüberhinaus muss die Infrastruktur robust, flexibel und sicher sein. Und welche Neuerungen bringen Cloud, Netzwerk-Disaggregation oder das Software-definierte Netzwerk?
 
-__Erh&auml;ltlich seit Dezember 2019 als E-Book oder gedrucktes Buch.__
+__Erh&auml;ltlich ab Dezember 2019 als E-Book oder gedrucktes Buch.__
 
 Ein Blick ins [Inhaltsverzeichnis](Inhaltsverzeichnis.md).
 
@@ -36,7 +36,7 @@ Fast alle Kapitel benutzen denselben Netzaufbau und diegleichen IPv4/IPv6-Adress
 
 * Das [Korrekturverzeichnis](errata.pdf) listet die inhaltlichen Fehler und ihre Verbesserung.
 
-* Buch kaufen bei [Amazon](https://www.amazon.de/) oder [BoD](https://www.bod.de/buchshop/der-openswitch-praktiker-markus-stubbig-9783750421288)
+* Buch kaufen bei [Amazon](https://www.amazon.de/OpenSwitch-Praktiker-Datacenter-Switching-mit-Linux/dp/3750421285) oder [BoD](https://www.bod.de/)
 
 * Kontakt zum Autor per [E-Mail](mailto:der.openswitch.praktiker@gmail.com)
 
